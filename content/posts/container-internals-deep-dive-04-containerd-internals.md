@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 04: containerd Internals"
 date: 2022-01-09T09:00:00+05:30
 slug: "container-internals-deep-dive-04-containerd-internals"
 description: "Understand containerd architecture: content store, snapshotters, runtime shims, and lifecycle flow."
+cover: "https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["containerd", "containers", "runtime", "kubernetes"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **5/10**. In part 03 we covered networking and CNI. Now we go deeper into `containerd`.

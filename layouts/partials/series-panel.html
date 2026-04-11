@@ -1,0 +1,21 @@
+{{- $series := .Params.series -}}
+{{- if $series -}}
+  {{- $all := where (where .Site.RegularPages "Section" "posts") "Params.series" $series -}}
+  {{- $items := sort $all "Date" "asc" -}}
+  {{- if gt (len $items) 1 -}}
+    <details class="series-panel" open>
+      <summary>{{ $series }} — this post is part of a series</summary>
+      <ol>
+        {{- range $idx, $p := $items -}}
+          <li>
+            {{- if eq $p.RelPermalink $.RelPermalink -}}
+              <strong>Part {{ add $idx 1 }}: {{ $p.Title }}</strong>
+            {{- else -}}
+              <a href="{{ $p.RelPermalink }}">Part {{ add $idx 1 }}: {{ $p.Title }}</a>
+            {{- end -}}
+          </li>
+        {{- end -}}
+      </ol>
+    </details>
+  {{- end -}}
+{{- end -}}

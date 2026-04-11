@@ -4,6 +4,7 @@
     {{ partial "head.html" . }}
   </head>
   <body>
+    <div id="read-progress" aria-hidden="true"></div>
     <div class="bg-orb orb-a"></div>
     <div class="bg-orb orb-b"></div>
     <header class="site-header">
@@ -11,16 +12,65 @@
       <nav aria-label="Primary">
         <ul>
           {{ range site.Menus.main }}
-            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ $isCurrent := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (eq $.RelPermalink .URL) }}
+            <li><a class="{{ if $isCurrent }}active{{ end }}" href="{{ .URL }}">{{ .Name }}</a></li>
           {{ end }}
         </ul>
       </nav>
     </header>
-    <main class="shell">
+    <main class="shell{{ if and (eq .Kind "page") (eq .Section "posts") }} shell-post{{ end }}">
       {{ block "main" . }}{{ end }}
     </main>
     <footer class="site-footer">
       <p>© {{ now.Year }} {{ site.Params.author }} · Built with Hugo · Container thoughts in public.</p>
     </footer>
+    <a href="#" class="top-link" id="top-link" aria-label="Go to top">↑</a>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const topLink = document.getElementById("top-link");
+        const progress = document.getElementById("read-progress");
+
+        const onScroll = () => {
+          const y = window.scrollY || document.documentElement.scrollTop;
+          if (topLink) topLink.classList.toggle("show", y > window.innerHeight * 0.7);
+
+          if (progress) {
+            const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const ratio = h > 0 ? (y / h) * 100 : 0;
+            progress.style.width = ratio + "%";
+          }
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        if (topLink) {
+          topLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+
+        document.querySelectorAll(".content pre > code").forEach(function (codeblock) {
+          const pre = codeblock.parentElement;
+          if (!pre || pre.querySelector(".copy-code")) return;
+
+          const button = document.createElement("button");
+          button.className = "copy-code";
+          button.type = "button";
+          button.textContent = "copy";
+          button.addEventListener("click", function () {
+            navigator.clipboard.writeText(codeblock.textContent || "").then(function () {
+              button.textContent = "copied";
+              setTimeout(function () {
+                button.textContent = "copy";
+              }, 1200);
+            });
+          });
+
+          pre.appendChild(button);
+        });
+      });
+    </script>
   </body>
 </html>

@@ -3,6 +3,8 @@ title: "My Journey with n8n Workflow Has Started"
 date: 2025-10-12T10:00:00+05:30
 slug: "my-journey-with-n8n-workflow"
 description: "Setting up a self-hosted n8n workflow with Ollama and WhatsApp integration on a home lab environment."
+cover: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["n8n", "automation", "ollama", "self-hosted", "ai"]
 ---
 

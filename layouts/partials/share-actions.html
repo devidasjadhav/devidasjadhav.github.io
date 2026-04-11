@@ -1,0 +1,12 @@
+{{- $pageURL := .Permalink -}}
+{{- $title := .Title | plainify -}}
+<section class="share-actions" aria-label="Share this post">
+  <p>Share</p>
+  <ul>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://x.com/intent/tweet/?text={{ $title | urlquery }}&url={{ $pageURL | urlquery }}">X</a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&url={{ $pageURL | urlquery }}&title={{ $title | urlquery }}">LinkedIn</a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://api.whatsapp.com/send?text={{ printf "%s %s" $title $pageURL | urlquery }}">WhatsApp</a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://t.me/share/url?url={{ $pageURL | urlquery }}&text={{ $title | urlquery }}">Telegram</a></li>
+    <li><a href="mailto:?subject={{ $title | urlquery }}&body={{ $pageURL | urlquery }}">Email</a></li>
+  </ul>
+</section>

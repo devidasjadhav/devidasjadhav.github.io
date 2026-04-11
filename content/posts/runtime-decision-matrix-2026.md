@@ -3,6 +3,8 @@ title: "Container Runtime Decision Matrix for 2026"
 date: 2026-04-09
 slug: "runtime-decision-matrix-2026"
 description: "How to choose between Docker Engine, containerd, and rootless runtimes based on team constraints and security posture."
+cover: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["containerd", "docker", "operations"]
 ---
 

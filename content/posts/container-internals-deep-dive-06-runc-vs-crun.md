@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 06: runc vs crun"
 date: 2022-01-23T09:00:00+05:30
 slug: "container-internals-deep-dive-06-runc-vs-crun"
 description: "Compare runc and crun on startup latency, memory footprint, and operational tradeoffs."
+cover: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["runc", "crun", "oci", "containers", "performance"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **7/10**. In part 05 we covered OCI. Now we compare two OCI runtime implementations.

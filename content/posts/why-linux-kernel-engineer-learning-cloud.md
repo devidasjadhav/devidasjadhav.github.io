@@ -3,6 +3,8 @@ title: "Why a Linux Kernel Engineer Is Learning Cloud"
 date: 2021-06-13T10:00:00+05:30
 slug: "why-linux-kernel-engineer-learning-cloud"
 description: "From eBPF debugging to cloud-native systems: why kernel experience naturally extends into modern cloud infrastructure."
+cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["linux", "cloud", "ebpf", "kubernetes", "terraform"]
 ---
 

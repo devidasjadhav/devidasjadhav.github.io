@@ -3,6 +3,8 @@ title: "From Dockerfiles to Distroless: Shrinking Container Attack Surface"
 date: 2026-04-11
 slug: "distroless-attack-surface"
 description: "A migration path from general-purpose base images to distroless containers with fewer vulnerabilities and clearer ownership."
+cover: "https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["docker", "security", "distroless"]
 ---
 

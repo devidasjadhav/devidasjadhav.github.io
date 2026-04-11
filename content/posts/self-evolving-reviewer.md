@@ -3,6 +3,8 @@ title: "The Self-Evolving Reviewer"
 date: 2026-04-04T10:00:00+05:30
 slug: "self-evolving-reviewer"
 description: "A weekend experiment in recursive AI code review, where the agent audits and improves its own implementation."
+cover: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["ai", "agents", "code-review", "opensource", "build-in-public"]
 ---
 

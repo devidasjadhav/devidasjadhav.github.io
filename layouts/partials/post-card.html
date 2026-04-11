@@ -1,7 +1,13 @@
 <article class="card">
+  {{ with (.Params.cover | default .Params.image) }}
+    <a class="card-cover" href="{{ $.RelPermalink }}">
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+    </a>
+  {{ end }}
   <p class="card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
   <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
   {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  {{ with .Params.coverCredit }}<p class="cover-credit">{{ . }}</p>{{ end }}
   {{ with .Params.tags }}
     <ul>
       {{ range first 3 . }}<li>#{{ . }}</li>{{ end }}

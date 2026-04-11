@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 07: Rootless Containers with Podman"
 date: 2022-01-30T09:00:00+05:30
 slug: "container-internals-deep-dive-07-rootless-containers-podman"
 description: "How rootless containers work with user namespaces, and where Podman fits in secure workflows."
+cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["rootless", "podman", "security", "containers"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **8/10**. In part 06 we compared `runc` and `crun`. Here we focus on rootless containers.

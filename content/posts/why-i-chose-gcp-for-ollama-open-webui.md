@@ -3,6 +3,8 @@ title: "Why I Chose GCP over AWS and Azure for Ollama and Open WebUI"
 date: 2024-05-26T10:00:00+05:30
 slug: "why-i-chose-gcp-for-ollama-open-webui"
 description: "A hands-on comparison of cloud GPU spot workflows for running Ollama and Open WebUI."
+cover: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["gcp", "aws", "azure", "ollama", "open-webui", "cloud"]
 ---
 

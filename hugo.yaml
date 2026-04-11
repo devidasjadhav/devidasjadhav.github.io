@@ -12,6 +12,14 @@ taxonomies:
 permalinks:
   posts: "/posts/:slug/"
 
+related:
+  includeNewer: true
+  indices:
+    - name: "tags"
+      weight: 100
+    - name: "date"
+      weight: 20
+
 markup:
   highlight:
     noClasses: false

@@ -1,0 +1,18 @@
+{{- $related := first 3 (.Site.RegularPages.Related .) -}}
+{{- if and (eq (len $related) 0) (.Params.tags) -}}
+  {{- $fallback := where (where .Site.RegularPages "Section" "posts") "RelPermalink" "ne" .RelPermalink -}}
+  {{- $related = first 3 (where $fallback "Params.tags" "intersect" .Params.tags) -}}
+{{- end -}}
+{{- with $related -}}
+  <section class="related-posts" aria-label="Related posts">
+    <h2>You may also like</h2>
+    <div class="related-grid">
+      {{- range . -}}
+        <article>
+          <p>{{ .Date.Format "Jan 2, 2006" }}</p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        </article>
+      {{- end -}}
+    </div>
+  </section>
+{{- end -}}

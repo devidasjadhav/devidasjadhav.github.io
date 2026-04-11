@@ -1,20 +1,118 @@
 {{ define "main" }}
-  <article class="post">
-    <p class="eyebrow">{{ if eq .Section "posts" }}Container Blog / Post{{ else }}Container Blog{{ end }}</p>
-    <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
-    {{ if eq .Section "posts" }}
-      <div class="meta">
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-        {{ with .Params.tags }}
-          <ul>
-            {{ range . }}<li>#{{ . }}</li>{{ end }}
-          </ul>
-        {{ end }}
+  {{ $hasToc := and (eq .Section "posts") (findRE "<li" .TableOfContents 1) }}
+  <div class="post-layout">
+    <article class="post">
+      {{ with (.Params.cover | default .Params.image) }}
+        <figure class="post-hero">
+          <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+        </figure>
+      {{ end }}
+      {{ with .Params.coverCredit }}<p class="cover-credit">{{ . }}</p>{{ end }}
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="{{ "/" | relURL }}">Home</a>
+        <span>/</span>
+        {{ if .Section }}<a href="{{ printf "/%s/" .Section | relURL }}">{{ .Section | title }}</a>{{ else }}<span>Page</span>{{ end }}
+        <span>/</span>
+        <span>{{ .Title }}</span>
+      </nav>
+      <p class="eyebrow">{{ if eq .Section "posts" }}Container Blog / Post{{ else }}Container Blog{{ end }}</p>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+      {{ if eq .Section "posts" }}
+        <div class="meta">
+          <div class="meta-top">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+            <span>·</span>
+            <span>{{ .ReadingTime }} min read</span>
+            <span>·</span>
+            <span>{{ .WordCount }} words</span>
+          </div>
+          {{ with .Params.tags }}
+            <ul>
+              {{ range . }}<li>#{{ . }}</li>{{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      {{ end }}
+      {{ if $hasToc }}
+        <details class="toc toc-inline" open>
+          <summary>On this page</summary>
+          {{ .TableOfContents }}
+        </details>
+      {{ end }}
+      {{ partial "series-panel.html" . }}
+      <div class="content">
+        {{ .Content }}
       </div>
+      {{ if eq .Section "posts" }}
+        {{ partial "share-actions.html" . }}
+        {{ partial "related-posts.html" . }}
+        <div class="post-nav">
+          {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+          {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+        </div>
+      {{ end }}
+    </article>
+    {{ if $hasToc }}
+      <aside class="toc-rail" aria-label="On this page">
+        <div class="toc toc-rail-card">
+          <p class="toc-title">On this page</p>
+          {{ .TableOfContents }}
+        </div>
+      </aside>
     {{ end }}
-    <div class="content">
-      {{ .Content }}
-    </div>
-  </article>
+  </div>
+  {{ if $hasToc }}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toc = document.querySelector(".toc-rail");
+        if (!toc) return;
+        const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+        if (!links.length) return;
+
+        const pairs = links
+          .map((link) => {
+            const id = decodeURIComponent(link.getAttribute("href").slice(1));
+            const heading = document.getElementById(id);
+            return heading ? { heading, link } : null;
+          })
+          .filter(Boolean);
+
+        if (!pairs.length) return;
+
+        const setActive = (activeLink) => {
+          links.forEach((link) => link.classList.toggle("active", link === activeLink));
+        };
+
+        links.forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const id = decodeURIComponent(link.getAttribute("href").slice(1));
+            const target = document.getElementById(id);
+            if (!target) return;
+            history.pushState(null, "", `#${id}`);
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const pair = pairs.find((item) => item.heading === entry.target);
+                if (pair) setActive(pair.link);
+              }
+            });
+          },
+          {
+            rootMargin: "-24% 0px -62% 0px",
+            threshold: [0, 1],
+          },
+        );
+
+        pairs.forEach((item) => observer.observe(item.heading));
+        setActive(pairs[0].link);
+      });
+    </script>
+  {{ end }}
 {{ end }}

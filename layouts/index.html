@@ -21,18 +21,25 @@
     </div>
   </section>
 
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ $build := where $posts "Params.tags" "intersect" (slice "docker" "ci-cd" "github-actions" "distroless" "supply-chain") }}
+  {{ $runtime := where $posts "Params.tags" "intersect" (slice "kubernetes" "containerd" "operations" "networking" "runtime") }}
+  {{ $security := where $posts "Params.tags" "intersect" (slice "security" "oci" "rootless" "kata" "firecracker") }}
   <section class="topics">
-    <article>
+    <a class="topic-card" href="{{ "/tags/docker/" | relURL }}">
       <h3>Build Systems</h3>
       <p>Lean Dockerfiles, multi-stage techniques, and cache-aware build strategies.</p>
-    </article>
-    <article>
+      <span>{{ len $build }} posts</span>
+    </a>
+    <a class="topic-card" href="{{ "/tags/containerd/" | relURL }}">
       <h3>Runtime Operations</h3>
-      <p>Container scheduling, observability patterns, and incident playbooks.</p>
-    </article>
-    <article>
+      <p>Scheduling, networking paths, observability, and practical incident playbooks.</p>
+      <span>{{ len $runtime }} posts</span>
+    </a>
+    <a class="topic-card" href="{{ "/tags/security/" | relURL }}">
       <h3>Supply Chain Security</h3>
       <p>SBOM generation, signing, policy checks, and provenance verification.</p>
-    </article>
+      <span>{{ len $security }} posts</span>
+    </a>
   </section>
 {{ end }}

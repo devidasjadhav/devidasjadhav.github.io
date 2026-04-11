@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 08: Kata Containers"
 date: 2022-02-06T09:00:00+05:30
 slug: "container-internals-deep-dive-08-kata-containers"
 description: "How Kata Containers combine container workflows with VM isolation boundaries."
+cover: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["kata", "containers", "virtualization", "security", "kubernetes"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **9/10**. In part 07 we covered rootless containers. This part covers Kata Containers.

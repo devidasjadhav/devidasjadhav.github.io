@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 02: Namespaces"
 date: 2021-12-26T09:00:00+05:30
 slug: "container-internals-deep-dive-02-namespaces"
 description: "How Linux namespaces isolate process IDs, mounts, users, and networking for containers."
+cover: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["containers", "namespaces", "linux", "isolation"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **3/10**. In part 01 we covered cgroups. In this part we cover namespaces.

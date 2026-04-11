@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 05: OCI Standard"
 date: 2022-01-16T09:00:00+05:30
 slug: "container-internals-deep-dive-05-oci-standard"
 description: "Why OCI image and runtime specs matter for interoperability across tools and platforms."
+cover: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["oci", "containers", "standards", "runtime"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **6/10**. In part 04 we covered containerd internals. Here we cover OCI.

@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 09: Firecracker microVM"
 date: 2022-02-13T09:00:00+05:30
 slug: "container-internals-deep-dive-09-firecracker-microvm"
 description: "What Firecracker microVMs optimize for, and when they are a better fit than standard containers."
+cover: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["firecracker", "microvm", "containers", "serverless", "security"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **10/10**. In part 08 we covered Kata Containers. This final part covers Firecracker.

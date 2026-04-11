@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 00"
 date: 2021-12-12T12:00:03+05:30
 slug: "container-internals-deep-dive-00"
 description: "Kickoff post for a deep-dive series on container internals, starting with why chroot matters."
+cover: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["containers", "docker", "chroot", "containerd", "runc"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **1/10**. This is the kickoff for the container internals deep-dive sequence.

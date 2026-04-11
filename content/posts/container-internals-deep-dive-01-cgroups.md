@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 01: Cgroups"
 date: 2021-12-19T09:00:00+05:30
 slug: "container-internals-deep-dive-01-cgroups"
 description: "How cgroups enforce resource limits for CPU, memory, and I/O in container workloads."
+cover: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["containers", "cgroups", "linux", "docker", "kubernetes"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **2/10**. In part 00 we covered `chroot`. In this part we cover cgroups.

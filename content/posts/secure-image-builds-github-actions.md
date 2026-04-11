@@ -3,6 +3,8 @@ title: "Secure Container Image Builds with GitHub Actions"
 date: 2026-04-07
 slug: "secure-image-builds-github-actions"
 description: "A minimal GitHub Actions approach to reproducible builds, provenance, and vulnerability checks for container images."
+cover: "https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["github-actions", "ci-cd", "supply-chain"]
 ---
 

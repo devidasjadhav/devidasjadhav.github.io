@@ -3,7 +3,10 @@ title: "Container Internals Deep Dive 03: Network Namespaces and CNI"
 date: 2022-01-02T09:00:00+05:30
 slug: "container-internals-deep-dive-03-network-namespaces-cni"
 description: "How container networking works from veth pairs to CNI plugin chains in Kubernetes."
+cover: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80"
+coverCredit: "Photo by Unsplash"
 tags: ["containers", "networking", "cni", "kubernetes"]
+series: "Container Internals Deep Dive"
 ---
 
 Series: **4/10**. In part 02 we covered namespaces. In this part we focus on network isolation and CNI.
