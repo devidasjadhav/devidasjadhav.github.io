@@ -1,6 +1,6 @@
 ---
 title: "go-mdbus-mcp Part 1: Why This Stack and Architecture"
-date: 2026-04-11T21:10:00+05:30
+date: 2026-04-08T21:10:00+05:30
 slug: "go-mdbus-mcp-part-1-architecture"
 description: "Why go-mdbus-mcp was built with Go + official MCP SDK, and how the runtime architecture is designed for industrial reliability."
 cover: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
