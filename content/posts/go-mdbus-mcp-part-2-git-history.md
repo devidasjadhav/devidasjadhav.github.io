@@ -1,6 +1,6 @@
 ---
 title: "go-mdbus-mcp Part 2: Git History as an Engineering Timeline"
-date: 2026-04-11T21:20:00+05:30
+date: 2026-04-10T21:20:00+05:30
 slug: "go-mdbus-mcp-part-2-git-history"
 description: "A stage-by-stage story of how go-mdbus-mcp moved from a fast prototype to a safer, test-driven release."
 cover: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80"

@@ -1,6 +1,6 @@
 ---
 title: "go-mdbus-mcp Part 3: Benchmark Results and Competitive Comparison"
-date: 2026-04-11T21:30:00+05:30
+date: 2026-04-10T21:30:00+05:30
 slug: "go-mdbus-mcp-part-3-benchmarks-and-competition"
 description: "How go-mdbus-mcp was benchmarked internally and compared externally against other Modbus MCP servers on a shared backend."
 cover: "https://images.unsplash.com/photo-1516117172878-fd2c41f4a759?auto=format&fit=crop&w=1600&q=80"
