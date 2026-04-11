@@ -9,4 +9,17 @@
       {{ partial "post-card.html" . }}
     {{ end }}
   </section>
+  {{ if gt .Paginator.TotalPages 1 }}
+    <nav class="pager" aria-label="Pagination">
+      {{ if .Paginator.HasPrev }}
+        <a class="btn btn-secondary" href="{{ .Paginator.Prev.URL }}">Newer</a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      <p>Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</p>
+      {{ if .Paginator.HasNext }}
+        <a class="btn btn-secondary" href="{{ .Paginator.Next.URL }}">Older</a>
+      {{ end }}
+    </nav>
+  {{ end }}
 {{ end }}

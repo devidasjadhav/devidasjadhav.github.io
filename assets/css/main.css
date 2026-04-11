@@ -229,6 +229,19 @@ h1 {
   gap: 1rem;
 }
 
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.pager p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .topics article {
   padding: 1rem;
 }
@@ -251,6 +264,44 @@ h1 {
 .content h2,
 .content h3 {
   margin-top: 1.8rem;
+}
+
+.content pre {
+  margin: 1rem 0 1.25rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid #d7e4dc;
+  border-radius: 12px;
+  background: #f8fbf9;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.content pre code {
+  display: block;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: #173126;
+}
+
+.content :not(pre) > code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+  padding: 0.12rem 0.36rem;
+  border: 1px solid #d7e4dc;
+  border-radius: 6px;
+  background: #eef6f1;
+  color: #173126;
+}
+
+.content .highlight,
+.content div.highlight {
+  margin: 1rem 0 1.25rem;
+  border-radius: 12px;
+}
+
+.content .highlight pre {
+  margin: 0;
 }
 
 .site-footer {

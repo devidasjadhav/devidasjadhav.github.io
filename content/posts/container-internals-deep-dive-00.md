@@ -6,13 +6,15 @@ description: "Kickoff post for a deep-dive series on container internals, starti
 tags: ["containers", "docker", "chroot", "containerd", "runc"]
 ---
 
-Past year I have been looking under the hood of Docker. I came across multiple interesting things.
-This series is my attempt to share whatever I have learned during past year.
-I expect this series will start new discussions rather than only providing answers.
+Series: **1/10**. This is the kickoff for the container internals deep-dive sequence.
+
+Over the past year, I have been looking under the hood of Docker and related runtimes.
+This series is my attempt to share what I learned along the way.
+My goal is to start useful discussions, not just provide one-line answers.
 
 ## Before we begin
 
-This series is intended for those who are interested in understanding "How Docker works?".
+This series is for readers who want to understand *how Docker works*.
 For readers who just want to run Docker, getting started can be as easy as:
 
 ```bash
@@ -44,28 +46,29 @@ Because history is the best way to understand how we got here. It helps answer:
 
 ## What are containers?
 
-There are many definitions. This one is from the [Docker website](https://www.docker.com/resources/what-container):
+There are many definitions. Here is one from the [Docker website](https://www.docker.com/resources/what-container):
 
 > A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
 
-Important part: *container image is a lightweight, standalone, executable package of software*.
+Important part: *a container image is a lightweight, standalone, executable package of software*.
 
-Container is simply a process running with:
+A container is best thought of as a process (or process group) running with:
 
-1. Its own just-enough root filesystem
-2. Bare minimum privileges
-3. A sandboxed environment so it will not harm the host
+1. Its own root filesystem view
+2. Isolation primitives such as namespaces and cgroups
+3. A constrained privilege model
 
 ## Chroot
 
-It all started with `chroot` system call.
-`chroot` was added to Unix by Bill Joy in 1982, with intention to test installation and build systems.
+One important early building block is the `chroot` system call.
+`chroot` was added to Unix in 1979, originally to help with build and test workflows.
 
 From the man page (`man 2 chroot`):
 
 > chroot - run command or interactive shell with special root directory
 
-In short, `chroot` allows you to switch your root filesystem (that is, what you see at `ls /`).
+In short, `chroot` changes a process view of `/` (what it sees as the root filesystem).
+By itself, `chroot` is not a complete security boundary, but it is a useful filesystem isolation primitive.
 
 ## How chroot relates to containers
 
@@ -73,39 +76,39 @@ Note: Links below point to source code you might enjoy exploring.
 
 [Moby Project](https://github.com/moby/moby) is an open-source project created by Docker to enable and accelerate software containerization.
 
-Moby/Docker uses containerd to manage containers through [libcontainerd](https://github.com/moby/moby/tree/master/libcontainerd).
+Docker Engine uses `containerd` for core lifecycle tasks through [libcontainerd](https://github.com/moby/moby/tree/master/libcontainerd).
 
-Libcontainerd init uses [go-runc](https://github.com/containerd/containerd/blob/master/pkg/process/init.go#L38).
+`containerd` invokes [go-runc](https://github.com/containerd/containerd/blob/master/pkg/process/init.go#L38) as part of runtime execution.
 
-go-runc is a wrapper for [runc](https://github.com/opencontainers/runc).
+go-runc is a wrapper around [runc](https://github.com/opencontainers/runc).
 
-runc [init](https://github.com/opencontainers/runc/blob/master/init.go#L13) eventually leads to [chroot](https://github.com/opencontainers/runc/blob/master/libcontainer/rootfs_linux.go#L141).
+`runc` [init](https://github.com/opencontainers/runc/blob/master/init.go#L13) eventually reaches rootfs setup paths including [chroot](https://github.com/opencontainers/runc/blob/master/libcontainer/rootfs_linux.go#L141).
 
 Summary:
 
-1. Moby/Docker CLI is a frontend talking to `dockerd` on Unix socket (`/var/run/docker.sock`).
-2. `containerd` communicates with `dockerd` over gRPC API exposed by [containerd](https://github.com/containerd/containerd/blob/main/services/server/server.go#L104).
-3. `containerd` handles tasks like pulling/storing images and starting containers.
-4. For runtime execution, it uses `runc` (via go-runc wrapper).
-5. `runc` uses `chroot` while spawning new containers.
+1. Docker CLI talks to `dockerd` over Unix socket (`/var/run/docker.sock`).
+2. `dockerd` talks to `containerd` over containerd's gRPC API.
+3. `containerd` handles tasks like image pull/storage and container lifecycle.
+4. For OCI runtime execution, `containerd` uses `runc` (via go-runc wrapper).
+5. `runc` sets up root filesystem and isolation primitives, where `chroot` can be part of that setup.
 
 ## So what?
 
-I could have just said Docker uses `chroot`. But I was interested in the full flow of how a new container is spawned.
+I could have stopped at "Docker uses `chroot`", but the full spawn path is more interesting and more useful for debugging.
 
-Containers use `chroot` for a specific purpose.
+The key point: containers are not *just* `chroot`; they combine filesystem setup, namespaces, cgroups, and capability controls.
 
 ## Why change root in first place?
 
-Changing root is necessary to solve one of Docker's primary goals:
-the classic "It works for me!" problem.
+Changing the root view helps solve one of Docker's core goals:
+avoid the classic "It works on my machine" problem.
 
-To make workloads reproducible, we run them with a dedicated root filesystem containing all required dependencies.
-With `chroot`, the process uses container root filesystem resources instead of host root filesystem resources.
+To make workloads reproducible, we run them with an image-based root filesystem containing required dependencies.
+With `chroot` and mount namespace setup, a process resolves paths inside container rootfs instead of host rootfs.
 
 ## And much more
 
-This post was about `chroot` and kickoff for the series.
+This post is a kickoff for the series, with focus on why `chroot` still matters.
 The original plan for next posts:
 
 1. Chroot (already discussed above)
@@ -119,4 +122,6 @@ The original plan for next posts:
 9. Kata containers
 10. Firecracker microVM
 
-These are the first 10 planned topics. See you in the next post about chroot.
+These are the first 10 planned topics. See you in the next post, where we start with cgroups.
+
+Next: [Container Internals Deep Dive 01: Cgroups](/posts/container-internals-deep-dive-01-cgroups/)

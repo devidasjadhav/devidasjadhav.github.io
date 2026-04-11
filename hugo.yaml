@@ -4,7 +4,7 @@ title: "Container Blog"
 enableRobotsTXT: true
 
 pagination:
-  pagerSize: 6
+  pagerSize: 20
 
 taxonomies:
   tag: "tags"
