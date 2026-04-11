@@ -5,19 +5,16 @@
       {{ with (.Params.cover | default .Params.image) }}
         <figure class="post-hero">
           <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+          {{ with $.Params.coverCredit }}<figcaption>{{ . }}</figcaption>{{ end }}
         </figure>
       {{ end }}
-      {{ with .Params.coverCredit }}<p class="cover-credit">{{ . }}</p>{{ end }}
       <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="{{ "/" | relURL }}">Home</a>
-        <span>/</span>
         {{ if .Section }}<a href="{{ printf "/%s/" .Section | relURL }}">{{ .Section | title }}</a>{{ else }}<span>Page</span>{{ end }}
         <span>/</span>
         <span>{{ .Title }}</span>
       </nav>
-      <p class="eyebrow">{{ if eq .Section "posts" }}Container Blog / Post{{ else }}Container Blog{{ end }}</p>
       <h1>{{ .Title }}</h1>
-      {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+      {{ with .Description }}<p class="lead post-subtitle">{{ . }}</p>{{ end }}
       {{ if eq .Section "posts" }}
         <div class="meta">
           <div class="meta-top">
@@ -27,11 +24,6 @@
             <span>·</span>
             <span>{{ .WordCount }} words</span>
           </div>
-          {{ with .Params.tags }}
-            <ul>
-              {{ range . }}<li>#{{ . }}</li>{{ end }}
-            </ul>
-          {{ end }}
         </div>
       {{ end }}
       {{ if $hasToc }}
@@ -44,6 +36,14 @@
       <div class="content">
         {{ .Content }}
       </div>
+      {{ with .Params.tags }}
+        <section class="post-tags" aria-label="Post tags">
+          <p>Filed under</p>
+          <ul>
+            {{ range . }}<li><a href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a></li>{{ end }}
+          </ul>
+        </section>
+      {{ end }}
       {{ if eq .Section "posts" }}
         {{ partial "share-actions.html" . }}
         {{ partial "related-posts.html" . }}

@@ -313,6 +313,7 @@ h1 {
   border-radius: 18px 18px 0 0;
   overflow: hidden;
   max-height: 280px;
+  position: relative;
 }
 
 .post-hero img {
@@ -321,6 +322,20 @@ h1 {
   object-fit: cover;
   display: block;
   filter: saturate(1.03) contrast(1.03);
+}
+
+.post-hero figcaption {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #eff7f3;
+  background: rgba(16, 32, 24, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 0.16rem 0.52rem;
+  backdrop-filter: blur(2px);
 }
 
 .post-layout {
@@ -332,15 +347,16 @@ h1 {
 
 .meta {
   color: var(--muted);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.9rem;
 }
 
 .crumbs {
   display: flex;
   gap: 0.45rem;
   flex-wrap: wrap;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: var(--muted);
+  margin-bottom: 0.35rem;
 }
 
 .crumbs a {
@@ -348,10 +364,23 @@ h1 {
   text-decoration: none;
 }
 
+.post > h1 {
+  margin-top: 0.2rem;
+}
+
 .meta-top {
   display: flex;
   align-items: center;
   gap: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.post-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: #1f3f34;
+  max-width: 48ch;
+  margin-bottom: 0.65rem;
 }
 
 .toc {
@@ -515,6 +544,40 @@ h1 {
   max-width: 100%;
   border-radius: 10px;
   border: 1px solid var(--stroke);
+}
+
+.post-tags {
+  margin-top: 1.3rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed #cfddd6;
+}
+
+.post-tags p {
+  margin: 0 0 0.45rem;
+  font-size: 0.84rem;
+  color: #5f776d;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.post-tags ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.post-tags a {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #d2dfd9;
+  border-radius: 999px;
+  background: #fbfdfc;
+  color: #36584d;
+  font-size: 0.84rem;
+  padding: 0.16rem 0.5rem;
 }
 
 .content h2,
@@ -745,6 +808,12 @@ h1 {
   .post-hero {
     margin: -1.4rem -1.4rem 1rem;
     max-height: 200px;
+  }
+
+  .post-hero figcaption {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    font-size: 0.7rem;
   }
 }
 
