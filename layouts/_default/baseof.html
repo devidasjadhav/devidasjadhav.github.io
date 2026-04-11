@@ -51,16 +51,42 @@
           });
         }
 
-        document.querySelectorAll(".content pre > code").forEach(function (codeblock) {
-          const pre = codeblock.parentElement;
+        const copyText = (text) => {
+          if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+          }
+
+          return new Promise((resolve, reject) => {
+            const area = document.createElement("textarea");
+            area.value = text;
+            area.setAttribute("readonly", "");
+            area.style.position = "absolute";
+            area.style.left = "-9999px";
+            document.body.appendChild(area);
+            area.select();
+            try {
+              document.execCommand("copy");
+              resolve();
+            } catch (err) {
+              reject(err);
+            } finally {
+              document.body.removeChild(area);
+            }
+          });
+        };
+
+        document.querySelectorAll(".content pre").forEach(function (pre) {
           if (!pre || pre.querySelector(".copy-code")) return;
+          const codeblock = pre.querySelector("code");
+          const content = codeblock ? codeblock.textContent : pre.textContent;
+          if (!content || !content.trim()) return;
 
           const button = document.createElement("button");
           button.className = "copy-code";
           button.type = "button";
           button.textContent = "copy";
           button.addEventListener("click", function () {
-            navigator.clipboard.writeText(codeblock.textContent || "").then(function () {
+            copyText(content).then(function () {
               button.textContent = "copied";
               setTimeout(function () {
                 button.textContent = "copy";
