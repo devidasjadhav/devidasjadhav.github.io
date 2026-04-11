@@ -1,0 +1,38 @@
+baseURL: "https://devidasjadhav.github.io/"
+languageCode: "en-us"
+title: "Container Blog"
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 6
+
+taxonomies:
+  tag: "tags"
+
+permalinks:
+  posts: "/posts/:slug/"
+
+markup:
+  highlight:
+    noClasses: false
+  goldmark:
+    renderer:
+      unsafe: true
+
+params:
+  author: "Devidas Jadhav"
+  description: "Deep dives, field notes, and practical playbooks for modern container engineering."
+  tagline: "Container-first engineering notes"
+  repo: "https://github.com/devidasjadhav/devidasjadhav.github.io"
+
+menu:
+  main:
+    - name: "Home"
+      pageRef: "/"
+      weight: 1
+    - name: "Posts"
+      pageRef: "/posts"
+      weight: 2
+    - name: "About"
+      pageRef: "/about"
+      weight: 3

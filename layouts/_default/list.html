@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <section class="section-head">
+    <p class="eyebrow">Container Blog</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  </section>
+  <section class="card-grid">
+    {{ range .Paginator.Pages }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}

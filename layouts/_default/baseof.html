@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode }}">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <header class="site-header">
+      <a class="brand" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+      <nav aria-label="Primary">
+        <ul>
+          {{ range site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+    </header>
+    <main class="shell">
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer class="site-footer">
+      <p>© {{ now.Year }} {{ site.Params.author }} · Built with Hugo · Container thoughts in public.</p>
+    </footer>
+  </body>
+</html>

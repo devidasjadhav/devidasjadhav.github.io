@@ -1,0 +1,288 @@
+:root {
+  --bg: #f3f5f4;
+  --panel: #ffffff;
+  --ink: #102018;
+  --muted: #4a5e54;
+  --brand: #0f7f5f;
+  --brand-strong: #08543e;
+  --stroke: #d9e3dd;
+  --shadow: 0 20px 50px rgba(16, 32, 24, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(148, 204, 183, 0.28), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(200, 236, 219, 0.35), transparent 32%),
+    linear-gradient(160deg, #f8fbf9 0%, var(--bg) 60%, #edf3ef 100%);
+  min-height: 100vh;
+}
+
+.bg-orb {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-a {
+  width: 260px;
+  height: 260px;
+  background: #7fd8b6;
+  top: 6rem;
+  right: 5%;
+}
+
+.orb-b {
+  width: 220px;
+  height: 220px;
+  background: #bce7d2;
+  bottom: 8rem;
+  left: 2%;
+}
+
+.site-header,
+.shell,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.3rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-family: "Fraunces", serif;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+  display: grid;
+  gap: 2rem;
+  animation: rise 0.5s ease-out;
+}
+
+.hero,
+.panel,
+.post,
+.section-head,
+.topics article {
+  background: color-mix(in hsl, var(--panel) 92%, #f4fff9);
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  border-radius: 18px;
+}
+
+.hero {
+  padding: 2.8rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  color: var(--brand-strong);
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fraunces", serif;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.12;
+}
+
+.lead {
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn-secondary {
+  border: 1px solid var(--stroke);
+  color: var(--ink);
+  background: #fff;
+}
+
+.panel {
+  padding: 1.3rem;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3rem 0.3rem 1rem;
+}
+
+.panel-header a {
+  color: var(--brand-strong);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  background: #fff;
+  padding: 1rem;
+}
+
+.card h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.card p,
+.card-meta {
+  color: var(--muted);
+  margin: 0.4rem 0;
+}
+
+.card ul,
+.meta ul {
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.card li,
+.meta li {
+  background: #edf7f2;
+  color: var(--brand-strong);
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.topics article {
+  padding: 1rem;
+}
+
+.section-head,
+.post {
+  padding: 2rem;
+}
+
+.meta {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+.content {
+  line-height: 1.75;
+  color: #26372f;
+}
+
+.content h2,
+.content h3 {
+  margin-top: 1.8rem;
+}
+
+.site-footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem 2.2rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .hero,
+  .section-head,
+  .post {
+    padding: 1.4rem;
+  }
+}

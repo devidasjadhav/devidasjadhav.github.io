@@ -1,0 +1,38 @@
+{{ define "main" }}
+  <section class="hero">
+    <p class="eyebrow">{{ site.Params.tagline }}</p>
+    <h1>Production-ready container engineering, minus the fluff.</h1>
+    <p class="lead">{{ site.Params.description }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ "/posts" | relURL }}">Read latest posts</a>
+      <a class="btn btn-secondary" href="{{ "/about" | relURL }}">About this blog</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-header">
+      <h2>Fresh notes</h2>
+      <a href="{{ "/posts" | relURL }}">View all</a>
+    </div>
+    <div class="card-grid">
+      {{ range first 3 (where site.RegularPages "Section" "posts") }}
+        {{ partial "post-card.html" . }}
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="topics">
+    <article>
+      <h3>Build Systems</h3>
+      <p>Lean Dockerfiles, multi-stage techniques, and cache-aware build strategies.</p>
+    </article>
+    <article>
+      <h3>Runtime Operations</h3>
+      <p>Container scheduling, observability patterns, and incident playbooks.</p>
+    </article>
+    <article>
+      <h3>Supply Chain Security</h3>
+      <p>SBOM generation, signing, policy checks, and provenance verification.</p>
+    </article>
+  </section>
+{{ end }}

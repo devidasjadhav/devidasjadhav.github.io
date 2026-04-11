@@ -1,0 +1,20 @@
+{{ define "main" }}
+  <article class="post">
+    <p class="eyebrow">{{ if eq .Section "posts" }}Container Blog / Post{{ else }}Container Blog{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    {{ if eq .Section "posts" }}
+      <div class="meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        {{ with .Params.tags }}
+          <ul>
+            {{ range . }}<li>#{{ . }}</li>{{ end }}
+          </ul>
+        {{ end }}
+      </div>
+    {{ end }}
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}

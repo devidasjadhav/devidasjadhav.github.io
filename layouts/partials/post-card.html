@@ -1,0 +1,10 @@
+<article class="card">
+  <p class="card-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  {{ with .Params.tags }}
+    <ul>
+      {{ range first 3 . }}<li>#{{ . }}</li>{{ end }}
+    </ul>
+  {{ end }}
+</article>
